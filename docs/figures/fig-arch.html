@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta charset="utf-8" />
+<style>
+  html,body{margin:0;padding:0;background:#fff;}
+  .wrap{width:900px;height:620px;}
+  text{font-family:"Microsoft YaHei","Segoe UI",sans-serif;}
+</style>
+</head>
+<body>
+<div class="wrap">
+<svg width="900" height="620" viewBox="0 0 900 620" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <marker id="ar" markerWidth="9" markerHeight="9" refX="7.2" refY="3.2" orient="auto">
+      <path d="M0,0 L7,3.2 L0,6.4 z" fill="#7EA6C9"/>
+    </marker>
+    <marker id="ar2" markerWidth="9" markerHeight="9" refX="7.2" refY="3.2" orient="auto">
+      <path d="M0,0 L7,3.2 L0,6.4 z" fill="#C08A6A"/>
+    </marker>
+  </defs>
+
+  <!-- stage boxes: x 30..530 -->
+  <!-- 1 -->
+  <rect x="30" y="18" width="500" height="62" rx="7" fill="#F5F9FD" stroke="#A9C7E2" stroke-width="1.3"/>
+  <rect x="30" y="18" width="5" height="62" rx="2.5" fill="#2E7BC0"/>
+  <text x="54" y="44" font-size="19" font-weight="700" fill="#16304A">Excel 数据源</text>
+  <text x="54" y="66" font-size="14.5" fill="#5B7590">.xlsx 工作簿（本案例 6 张月表 + 1 张隐藏说明页）</text>
+
+  <line x1="280" y1="80" x2="280" y2="98" stroke="#7EA6C9" stroke-width="1.5" marker-end="url(#ar)"/>
+  <text x="292" y="94" font-size="13" fill="#7A93AD">保存 / 覆盖</text>
+
+  <!-- 2 -->
+  <rect x="30" y="100" width="500" height="62" rx="7" fill="#F5F9FD" stroke="#A9C7E2" stroke-width="1.3"/>
+  <rect x="30" y="100" width="5" height="62" rx="2.5" fill="#2E7BC0"/>
+  <text x="54" y="126" font-size="19" font-weight="700" fill="#16304A">文件监听器 chokidar</text>
+  <text x="54" y="148" font-size="14.5" fill="#5B7590">监听目录而非单文件 · awaitWriteFinish · 220ms 事件合并</text>
+
+  <line x1="280" y1="162" x2="280" y2="180" stroke="#7EA6C9" stroke-width="1.5" marker-end="url(#ar)"/>
+
+  <!-- 3 -->
+  <rect x="30" y="182" width="500" height="62" rx="7" fill="#F5F9FD" stroke="#A9C7E2" stroke-width="1.3"/>
+  <rect x="30" y="182" width="5" height="62" rx="2.5" fill="#2E7BC0"/>
+  <text x="54" y="208" font-size="19" font-weight="700" fill="#16304A">摄入调度 IngestService</text>
+  <text x="54" y="230" font-size="14.5" fill="#5B7590">single-flight · 世代号 · 失败重试 · 过期结果丢弃</text>
+
+  <line x1="280" y1="244" x2="280" y2="262" stroke="#7EA6C9" stroke-width="1.5" marker-end="url(#ar)"/>
+
+  <!-- 4 -->
+  <rect x="30" y="264" width="500" height="62" rx="7" fill="#F5F9FD" stroke="#A9C7E2" stroke-width="1.3"/>
+  <rect x="30" y="264" width="5" height="62" rx="2.5" fill="#2E7BC0"/>
+  <text x="54" y="290" font-size="19" font-weight="700" fill="#16304A">解析 Worker 线程（worker_threads）</text>
+  <text x="54" y="312" font-size="14.5" fill="#5B7590">SheetJS 0.20.3 · 类型推断 · 数据清洗 · 多表纵向合并</text>
+
+  <line x1="280" y1="326" x2="280" y2="344" stroke="#7EA6C9" stroke-width="1.5" marker-end="url(#ar)"/>
+
+  <!-- 5 -->
+  <rect x="30" y="346" width="500" height="62" rx="7" fill="#F5F9FD" stroke="#A9C7E2" stroke-width="1.3"/>
+  <rect x="30" y="346" width="5" height="62" rx="2.5" fill="#2E7BC0"/>
+  <text x="54" y="372" font-size="19" font-weight="700" fill="#16304A">快照仓库 SnapshotRepository</text>
+  <text x="54" y="394" font-size="14.5" fill="#5B7590">原子替换 · version / revision / instanceId · 投影缓存</text>
+
+  <line x1="280" y1="408" x2="280" y2="426" stroke="#7EA6C9" stroke-width="1.5" marker-end="url(#ar)"/>
+
+  <!-- 6 -->
+  <rect x="30" y="428" width="500" height="66" rx="7" fill="#EAF3FB" stroke="#5C97C9" stroke-width="1.5"/>
+  <rect x="30" y="428" width="5" height="66" rx="2.5" fill="#1F6FB2"/>
+  <text x="54" y="455" font-size="19" font-weight="700" fill="#16304A">传输层 HTTP + SSE</text>
+  <text x="54" y="477" font-size="14.5" fill="#5B7590">REST 投影接口 / 分页接口 · 事件流只推版本号，不推数据</text>
+
+  <!-- browser box -->
+  <rect x="636" y="330" width="234" height="246" rx="8" fill="#FFFFFF" stroke="#9BBBD6" stroke-width="1.4" stroke-dasharray="6 4"/>
+  <text x="656" y="357" font-size="18" font-weight="700" fill="#16304A">浏览器大屏（前端）</text>
+  <rect x="652" y="372" width="202" height="38" rx="5" fill="#F4F8FC" stroke="#C6DAEA"/>
+  <text x="664" y="396" font-size="14" fill="#33506D">SSE 客户端 · 版本对齐</text>
+  <rect x="652" y="420" width="202" height="38" rx="5" fill="#F4F8FC" stroke="#C6DAEA"/>
+  <text x="664" y="444" font-size="14" fill="#33506D">ECharts 组件渲染</text>
+  <rect x="652" y="468" width="202" height="38" rx="5" fill="#F4F8FC" stroke="#C6DAEA"/>
+  <text x="664" y="492" font-size="14" fill="#33506D">拖拽 / 缩放 / 配置</text>
+  <rect x="652" y="516" width="202" height="38" rx="5" fill="#F4F8FC" stroke="#C6DAEA"/>
+  <text x="664" y="540" font-size="14" fill="#33506D">AI 预览层 · 采用 / 撤销</text>
+
+  <!-- arrows to browser -->
+  <path d="M530,442 L636,386" fill="none" stroke="#7EA6C9" stroke-width="1.5" marker-end="url(#ar)"/>
+  <text x="534" y="422" font-size="13" fill="#5B7590">SSE 通知</text>
+  <path d="M530,464 L636,438" fill="none" stroke="#7EA6C9" stroke-width="1.5" marker-end="url(#ar)"/>
+  <text x="534" y="486" font-size="13" fill="#5B7590">拉取投影</text>
+  <path d="M636,512 L530,494" fill="none" stroke="#C08A6A" stroke-width="1.5" stroke-dasharray="5 3" marker-end="url(#ar2)"/>
+  <text x="556" y="530" font-size="13" fill="#A2704F">提交变更</text>
+
+  <!-- side note: document.json -->
+  <rect x="30" y="524" width="500" height="52" rx="7" fill="#FBFCFD" stroke="#CFDEEC" stroke-dasharray="5 4"/>
+  <text x="48" y="546" font-size="14.5" font-weight="700" fill="#33506D">画布持久化</text>
+  <text x="130" y="546" font-size="14" fill="#5B7590">data/document.json：原子写 + 版本信封 + 损坏隔离</text>
+  <text x="48" y="566" font-size="13.5" fill="#7A93AD">与数据快照相互独立：数据刷新不重写画布，画布变更不影响解析</text>
+
+  <!-- legend -->
+  <line x1="636" y1="596" x2="676" y2="596" stroke="#7EA6C9" stroke-width="1.5" marker-end="url(#ar)"/>
+  <text x="684" y="600" font-size="13" fill="#7A93AD">数据流</text>
+  <line x1="742" y1="596" x2="782" y2="596" stroke="#C08A6A" stroke-width="1.5" stroke-dasharray="5 3" marker-end="url(#ar2)"/>
+  <text x="790" y="600" font-size="13" fill="#7A93AD">控制流</text>
+</svg>
+</div>
+</body>
+</html>

@@ -1,0 +1,23 @@
+{
+  "name": "live-sheet-dashboard",
+  "version": "1.4.0",
+  "private": true,
+  "type": "module",
+  "description": "本地 Excel 实时可视化大屏：worker 解析、版本化快照、SSE 与低代码就绪架构",
+  "scripts": {
+    "start": "node server/index.mjs",
+    "dev": "node server/index.mjs --dev",
+    "sample": "node scripts/make-sample.mjs",
+    "sample:multi": "node scripts/make-multi-sample.mjs",
+    "sample:office": "node scripts/make-office-samples.mjs",
+    "verify:samples": "node scripts/verify-samples.mjs",
+    "test": "node --test tests/*.test.mjs",
+    "benchmark": "node scripts/benchmark.mjs",
+    "shot": "node scripts/screenshot.mjs"
+  },
+  "dependencies": {
+    "chokidar": "^6.0.0",
+    "echarts": "^6.1.0",
+    "xlsx": "https://cdn.sheetjs.com/xlsx-0.20.3/xlsx-0.20.3.tgz"
+  }
+}

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta charset="utf-8" />
+<style>
+  html,body{margin:0;padding:0;background:#fff;}
+  .wrap{width:900px;height:560px;}
+  text{font-family:"Microsoft YaHei","Segoe UI",sans-serif;}
+</style>
+</head>
+<body>
+<div class="wrap">
+<svg width="900" height="560" viewBox="0 0 900 560" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <marker id="a1" markerWidth="9" markerHeight="9" refX="7.2" refY="3.2" orient="auto">
+      <path d="M0,0 L7,3.2 L0,6.4 z" fill="#7EA6C9"/>
+    </marker>
+  </defs>
+
+  <!-- snapshot band -->
+  <rect x="30" y="20" width="840" height="128" rx="8" fill="#F5F9FD" stroke="#A9C7E2" stroke-width="1.3"/>
+  <text x="48" y="46" font-size="17" font-weight="700" fill="#16304A">数据快照 Snapshot</text>
+  <text x="222" y="46" font-size="13.5" fill="#7A93AD">进程内存，每次成功解析后原子替换，不落盘</text>
+  <rect x="48" y="60" width="248" height="72" rx="6" fill="#FFFFFF" stroke="#C6DAEA"/>
+  <text x="60" y="82" font-size="14" font-weight="700" fill="#33506D">元数据</text>
+  <text x="60" y="103" font-size="13.5" fill="#5B7590">version / revision / status</text>
+  <text x="60" y="122" font-size="13.5" fill="#5B7590">instanceId · updatedAt</text>
+  <rect x="312" y="60" width="252" height="72" rx="6" fill="#FFFFFF" stroke="#C6DAEA"/>
+  <text x="324" y="82" font-size="14" font-weight="700" fill="#33506D">列元数据 schema[]</text>
+  <text x="324" y="103" font-size="13.5" fill="#5B7590">name / type / nullRate</text>
+  <text x="324" y="122" font-size="13.5" fill="#5B7590">distinct · sample</text>
+  <rect x="580" y="60" width="272" height="72" rx="6" fill="#FFFFFF" stroke="#C6DAEA"/>
+  <text x="592" y="82" font-size="14" font-weight="700" fill="#33506D">行数据 rows[]</text>
+  <text x="592" y="103" font-size="13.5" fill="#5B7590">Record&lt;列名, 数值 | 文本 | 空&gt;</text>
+  <text x="592" y="122" font-size="13.5" fill="#5B7590">上限 10 万行 × 100 列 × 200 万格</text>
+
+  <!-- arrow -->
+  <line x1="450" y1="148" x2="450" y2="192" stroke="#7EA6C9" stroke-width="1.5" marker-end="url(#a1)"/>
+  <text x="466" y="176" font-size="13.5" fill="#5B7590">组件投影：encoding × rows → 图表数据</text>
+
+  <!-- document band -->
+  <rect x="30" y="196" width="840" height="128" rx="8" fill="#EAF3FB" stroke="#5C97C9" stroke-width="1.4"/>
+  <text x="48" y="222" font-size="17" font-weight="700" fill="#16304A">画布文档 Document</text>
+  <text x="222" y="222" font-size="13.5" fill="#5B7590">持久化为 data/document.json（原子写 + 版本信封）</text>
+  <rect x="48" y="236" width="190" height="72" rx="6" fill="#FFFFFF" stroke="#C6DAEA"/>
+  <text x="60" y="258" font-size="14" font-weight="700" fill="#33506D">grid 栅格</text>
+  <text x="60" y="279" font-size="13.5" fill="#5B7590">columns 12 · rowHeight 72</text>
+  <text x="60" y="298" font-size="13.5" fill="#5B7590">gap 12 · padding 12</text>
+  <rect x="250" y="236" width="190" height="72" rx="6" fill="#FFFFFF" stroke="#C6DAEA"/>
+  <text x="262" y="258" font-size="14" font-weight="700" fill="#33506D">components[]</text>
+  <text x="262" y="279" font-size="13.5" fill="#5B7590">组件规格数组</text>
+  <text x="262" y="298" font-size="13.5" fill="#5B7590">当前 8 个组件</text>
+  <rect x="452" y="236" width="190" height="72" rx="6" fill="#FFFFFF" stroke="#C6DAEA"/>
+  <text x="464" y="258" font-size="14" font-weight="700" fill="#33506D">patches[]</text>
+  <text x="464" y="279" font-size="13.5" fill="#5B7590">变更栈，支持撤销上一步</text>
+  <text x="464" y="298" font-size="13.5" fill="#5B7590">仅保留可回滚的最近记录</text>
+  <rect x="654" y="236" width="198" height="72" rx="6" fill="#FFFFFF" stroke="#C6DAEA"/>
+  <text x="666" y="258" font-size="14" font-weight="700" fill="#33506D">revision</text>
+  <text x="666" y="279" font-size="13.5" fill="#5B7590">画布版本号，每次落盘递增</text>
+  <text x="666" y="298" font-size="13.5" fill="#5B7590">与数据 version 相互独立</text>
+
+  <!-- arrows to detail -->
+  <line x1="160" y1="308" x2="160" y2="368" stroke="#7EA6C9" stroke-width="1.4" marker-end="url(#a1)"/>
+  <line x1="700" y1="308" x2="700" y2="368" stroke="#7EA6C9" stroke-width="1.4" marker-end="url(#a1)"/>
+
+  <!-- ComponentSpec -->
+  <rect x="30" y="372" width="400" height="164" rx="8" fill="#FFFFFF" stroke="#BBD3E8" stroke-width="1.3"/>
+  <text x="48" y="398" font-size="15.5" font-weight="700" fill="#16304A">ComponentSpec　组件规格</text>
+  <text x="48" y="424" font-size="13.5" fill="#33506D">id / type / title</text>
+  <text x="48" y="448" font-size="13.5" fill="#33506D">span（row, col, rowSpan, colSpan）</text>
+  <text x="48" y="472" font-size="13.5" fill="#33506D">encoding（x, y, series, agg, filters[]）</text>
+  <text x="48" y="496" font-size="13" fill="#7A93AD">type 取 kpi / line / bar / pie / table / text 等 6 类</text>
+  <text x="48" y="518" font-size="13" fill="#7A93AD">span 决定组件在 12 列栅格中的占位与跨行</text>
+
+  <!-- Patch -->
+  <rect x="470" y="372" width="400" height="164" rx="8" fill="#FFFFFF" stroke="#BBD3E8" stroke-width="1.3"/>
+  <text x="488" y="398" font-size="15.5" font-weight="700" fill="#16304A">Patch　画布变更记录</text>
+  <text x="488" y="424" font-size="13.5" fill="#33506D">op：add / remove / move / resize</text>
+  <text x="488" y="448" font-size="13.5" fill="#33506D">　　　/ remap / retitle / restyle</text>
+  <text x="488" y="472" font-size="13.5" fill="#33506D">targetId · spec · origin（user / ai）</text>
+  <text x="488" y="496" font-size="13.5" fill="#33506D">state（applied / reverted）· reason</text>
+  <text x="488" y="518" font-size="13" fill="#7A93AD">同一条记录既用于重放，也用于撤销与预览回滚</text>
+</svg>
+</div>
+</body>
+</html>

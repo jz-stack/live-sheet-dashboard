@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="color-scheme" content="dark" />
+<title>NOVA · 实时数据大屏</title>
+<link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+<div class="app">
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-mark" aria-hidden="true"><span class="dot" id="statusDot"></span></span>
+      <div class="brand-text">
+        <h1>实时数据大屏</h1>
+        <span class="brand-sub">NOVA CONSOLE</span>
+      </div>
+      <span class="ver" id="version">v0</span>
+      <span class="live" id="liveTag">LIVE</span>
+    </div>
+    <div class="meta">
+      <span class="chip mono" id="fileName">未加载文件</span>
+      <label class="chip source-chip" title="切换数据源">
+        <span class="source-label">数据源</span>
+        <select id="sourceSelect" class="source-select" aria-label="切换数据源"></select>
+      </label>
+      <span class="chip" id="updatedAt">等待数据</span>
+      <button class="btn" id="simulate">模拟一次变更</button>
+    </div>
+  </header>
+
+  <section class="toolbar">
+    <div class="tool-group">
+      <button class="btn" id="editToggle" aria-pressed="false">编辑布局</button>
+      <button class="btn" id="undoButton">撤销上一步</button>
+      <button class="btn danger" id="resetButton">恢复默认布局</button>
+    </div>
+    <span class="tool-divider" aria-hidden="true"></span>
+    <div class="tool-group">
+      <select id="addComponentType" class="select" aria-label="新增组件类型">
+        <option value="bar">柱状图</option>
+        <option value="line">折线图</option>
+        <option value="pie">占比图</option>
+        <option value="kpi">指标卡</option>
+        <option value="table">数据表</option>
+        <option value="text">文本块</option>
+      </select>
+      <button class="btn" id="addButton">添加组件</button>
+    </div>
+    <span class="layout-hint" id="layoutHint">编辑模式：拖标题移动，拖左 / 上 / 右手柄改尺寸</span>
+  </section>
+
+  <main class="workspace">
+    <section class="stage">
+      <div class="canvas-wrap">
+        <section class="canvas" id="canvas" aria-label="低代码画布"></section>
+      </div>
+      <div class="stage-frame" aria-hidden="true"></div>
+    </section>
+
+    <aside class="ai-rail panel" aria-label="AI 助手">
+      <div class="panel-head">
+        <h2>AI 助手</h2>
+        <span class="hint" id="aiMode">本地规则模式</span>
+      </div>
+      <form id="aiChartForm" class="ai-form">
+        <input id="aiInstruction" type="text" maxlength="300" placeholder="一句话建图：按地区看毛利排行" autocomplete="off" />
+        <button class="btn primary" id="aiChartButton" type="submit">建图</button>
+      </form>
+      <div class="ai-actions">
+        <button class="btn mini-wide" id="aiInsightScan" type="button">洞察扫描</button>
+        <button class="btn mini-wide" id="aiMaintenanceScan" type="button">画布体检</button>
+      </div>
+      <div id="aiSuggestions" class="ai-suggestions"></div>
+      <div id="aiInsights" class="ai-insights"></div>
+    </aside>
+  </main>
+
+  <section class="system">
+    <div class="panel">
+      <div class="panel-head">
+        <h2>数据体检</h2>
+        <span class="hint" id="warnCount"></span>
+      </div>
+      <div class="warnings" id="warnings"></div>
+    </div>
+    <div class="panel">
+      <div class="panel-head">
+        <h2>事件流</h2>
+        <span class="hint" id="docRevision">画布 r0</span>
+      </div>
+      <ul class="log" id="log"></ul>
+    </div>
+  </section>
+
+  <footer class="foot">
+    <span id="footInfo">本地服务 · 文件监听 → 解析 → SSE → Document → ECharts</span>
+  </footer>
+</div>
+
+<dialog id="configDialog" class="dialog">
+  <form id="configForm" method="dialog">
+    <h3>配置组件</h3>
+    <label>标题
+      <input id="configTitle" type="text" maxlength="60" required />
+    </label>
+    <div class="form-row">
+      <label>维度（X / 分类）
+        <select id="configX"></select>
+      </label>
+      <label>度量（数值）
+        <select id="configY"></select>
+      </label>
+    </div>
+    <div class="form-row">
+      <label>系列拆分
+        <select id="configSeries"></select>
+      </label>
+      <label>聚合
+        <select id="configAgg">
+          <option value="sum">求和</option>
+          <option value="count">计数</option>
+          <option value="avg">平均</option>
+          <option value="max">最大</option>
+        </select>
+      </label>
+    </div>
+    <p class="form-tip" id="configTip"></p>
+    <div class="form-actions">
+      <button class="btn" id="configCancel" type="button">取消</button>
+      <button class="btn primary" id="configSave" type="submit">保存配置</button>
+    </div>
+  </form>
+</dialog>
+
+<script src="/vendor/echarts.min.js"></script>
+<script type="module" src="/api.js"></script>
+<script type="module" src="/app.js"></script>
+</body>
+</html>

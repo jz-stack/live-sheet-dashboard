@@ -1,0 +1,231 @@
+{
+  "schemaVersion": 1,
+  "savedAt": "2026-11-14T03:16:32.666Z",
+  "document": {
+    "id": "main",
+    "name": "实时数据大屏",
+    "datasetId": "default",
+    "schemaVersion": 1,
+    "grid": {
+      "columns": 12,
+      "rowHeight": 72,
+      "gap": 12,
+      "padding": 12
+    },
+    "components": [
+      {
+        "id": "kpi-sum",
+        "type": "kpi",
+        "title": "销售额合计",
+        "span": {
+          "row": 0,
+          "col": 0,
+          "rowSpan": 2,
+          "colSpan": 3
+        },
+        "encoding": {
+          "agg": "sum",
+          "y": "销售额"
+        }
+      },
+      {
+        "id": "kpi-count",
+        "type": "kpi",
+        "title": "记录数",
+        "span": {
+          "row": 0,
+          "col": 3,
+          "rowSpan": 2,
+          "colSpan": 3
+        },
+        "encoding": {
+          "agg": "count",
+          "y": "销售额"
+        }
+      },
+      {
+        "id": "kpi-avg",
+        "type": "kpi",
+        "title": "平均单条",
+        "span": {
+          "row": 0,
+          "col": 6,
+          "rowSpan": 2,
+          "colSpan": 3
+        },
+        "encoding": {
+          "agg": "avg",
+          "y": "销售额"
+        }
+      },
+      {
+        "id": "kpi-max",
+        "type": "kpi",
+        "title": "峰值",
+        "span": {
+          "row": 0,
+          "col": 9,
+          "rowSpan": 2,
+          "colSpan": 3
+        },
+        "encoding": {
+          "agg": "max",
+          "y": "销售额"
+        }
+      },
+      {
+        "id": "sub-chart",
+        "type": "pie",
+        "title": "销售额 · 按地区",
+        "span": {
+          "row": 2,
+          "col": 0,
+          "rowSpan": 5,
+          "colSpan": 4
+        },
+        "encoding": {
+          "agg": "sum",
+          "x": "地区",
+          "y": "销售额"
+        }
+      },
+      {
+        "id": "data-table",
+        "type": "table",
+        "title": "数据表格",
+        "span": {
+          "row": 7,
+          "col": 0,
+          "rowSpan": 4,
+          "colSpan": 12
+        },
+        "encoding": {
+          "agg": "count"
+        }
+      },
+      {
+        "id": "3c712fda-8116-4d93-8420-4dc235a47ab0",
+        "type": "line",
+        "title": "销售额变化 · 按日期（分地区，重点看华东）",
+        "span": {
+          "row": 2,
+          "col": 4,
+          "rowSpan": 5,
+          "colSpan": 8
+        },
+        "encoding": {
+          "agg": "sum",
+          "x": "日期",
+          "y": "销售额",
+          "series": "地区"
+        }
+      },
+      {
+        "id": "cd5e4264-bde9-451b-864a-48220f09be96",
+        "type": "bar",
+        "title": "毛利 · 按地区",
+        "span": {
+          "row": 11,
+          "col": 0,
+          "colSpan": 6,
+          "rowSpan": 4
+        },
+        "encoding": {
+          "agg": "sum",
+          "x": "地区",
+          "y": "毛利"
+        }
+      }
+    ],
+    "patches": [
+      {
+        "id": "c93529e8-b074-465b-9c65-379cb0821f55",
+        "origin": "human",
+        "op": "remove",
+        "state": "applied",
+        "createdAt": "2026-11-14T03:16:32.416Z",
+        "idTarget": "5c93e9a3-8a2e-4af1-9bc8-f5b636a85953",
+        "inverse": {
+          "op": "add",
+          "spec": {
+            "id": "5c93e9a3-8a2e-4af1-9bc8-f5b636a85953",
+            "type": "text",
+            "title": "新增文本块",
+            "span": {
+              "row": 11,
+              "col": 6,
+              "colSpan": 6,
+              "rowSpan": 4
+            },
+            "encoding": {
+              "agg": "count"
+            },
+            "text": "新增文本块"
+          },
+          "index": 8
+        }
+      },
+      {
+        "id": "a6945c78-b1da-421e-8ac7-5552a158da7d",
+        "origin": "human",
+        "op": "add",
+        "state": "applied",
+        "createdAt": "2026-11-14T03:16:20.650Z",
+        "spec": {
+          "type": "text",
+          "title": "新增文本块",
+          "encoding": {
+            "agg": "count"
+          }
+        },
+        "idTarget": "a6945c78-b1da-421e-8ac7-5552a158da7d",
+        "inverse": {
+          "op": "remove",
+          "idTarget": "5c93e9a3-8a2e-4af1-9bc8-f5b636a85953"
+        }
+      },
+      {
+        "id": "2d2871d5-ef51-479b-af56-bd03171a163c",
+        "origin": "ai",
+        "op": "add",
+        "state": "applied",
+        "reason": "用户要求按地区看毛利：地区是文本列，只有 4 个取值，属于低基数分类；毛利是数值列，按地区汇总用 sum。这里选柱状图，是因为要看各地区毛利的绝对量对比和排行；饼图更适合看占比，且已有“销售额 · 按地区”饼图，用柱状图可避免重复，并方便横向比较各地区毛利的高低。",
+        "createdAt": "2026-11-14T03:14:30.949Z",
+        "spec": {
+          "type": "bar",
+          "title": "毛利 · 按地区",
+          "encoding": {
+            "x": "地区",
+            "y": "毛利",
+            "agg": "sum"
+          }
+        },
+        "idTarget": "2d2871d5-ef51-479b-af56-bd03171a163c",
+        "inverse": {
+          "op": "remove",
+          "idTarget": "cd5e4264-bde9-451b-864a-48220f09be96"
+        }
+      },
+      {
+        "id": "9744d116-0f57-45f2-a27c-d34fcd8c65bb",
+        "origin": "ai",
+        "op": "remap",
+        "state": "applied",
+        "reason": "系列列「旧渠道」不存在，导致组件降级；「地区」列存在于列清单且与标题“分地区”一致，重映射后可恢复按地区拆分系列。",
+        "createdAt": "2026-11-14T03:10:41.671Z",
+        "idTarget": "3c712fda-8116-4d93-8420-4dc235a47ab0",
+        "field": "series",
+        "value": "地区",
+        "inverse": {
+          "op": "remap",
+          "idTarget": "3c712fda-8116-4d93-8420-4dc235a47ab0",
+          "field": "series",
+          "value": "旧渠道"
+        }
+      }
+    ],
+    "revision": 48,
+    "createdAt": "2026-11-14T02:53:44.068Z",
+    "updatedAt": "2026-11-14T03:16:32.417Z"
+  }
+}

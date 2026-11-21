@@ -1,0 +1,7 @@
+node_modules/
+.env
+shot.png
+*.log
+data/document.json
+data/document.json.tmp
+data/document.json.corrupt-*
